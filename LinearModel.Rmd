@@ -18,6 +18,17 @@ Form three regression models; Model1 is SIMS~ARM, Model2 is SIMS~GRIP, and Model
 
 ## SIMS~ARM Regression
 
+```{r}
+plot(SIMS~ARM,data=data)
+```
+
+This scatterplot shows the greater the arm force(ARM), the greater the simulation(SIMS). It also shows a positive correlation.
+
+```{r}
+cor(SIMS~ARM,data=data)
+```
+
+This number is the correlation between SIMS and ARM force. The correlation is the measure of the linear association between two variables.
 
 
 ## SIMS~GRIP Regression
