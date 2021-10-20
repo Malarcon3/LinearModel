@@ -31,6 +31,19 @@ cor(SIMS~ARM,data=data)
 This number is the correlation between SIMS and ARM force. The correlation is the measure of the linear association between two variables.
 
 
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
+
+The equation is SIMS = -4.095160 + 0.054563 * ARM
+
+```{r}
+newData=data.frame(GRIP=94,ARM=88)
+predict.lm(model.1,newData,interval="prediction")
+```
+
+
 ## SIMS~GRIP Regression
 
 ## SIM~ARM+GRIP Regression
