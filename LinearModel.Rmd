@@ -38,6 +38,15 @@ summary.lm(model.1)
 
 The equation is SIMS = -4.095160 + 0.054563 * ARM
 
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+```
+
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+``` 
+
 ```{r}
 newData=data.frame(GRIP=94,ARM=88)
 predict.lm(model.1,newData,interval="prediction")
@@ -45,6 +54,10 @@ predict.lm(model.1,newData,interval="prediction")
 
 
 ## SIMS~GRIP Regression
+
+```{r}
+plot(SIMS~GRIP,data=data)
+```
 
 ## SIM~ARM+GRIP Regression
 
