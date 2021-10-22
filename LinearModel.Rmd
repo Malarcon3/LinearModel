@@ -55,7 +55,7 @@ newData=data.frame(GRIP=94,ARM=88)
 predict.lm(model.1,newData,interval="prediction")
 ```
 
-Fit is the predict SIMS score when you have an ARM strength of 88. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when ARM is 88.
+Fit is the predicted SIMS score when you have an ARM strength of 88. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when ARM is 88.
 
 ## SIMS~GRIP Regression
 
@@ -93,12 +93,12 @@ newData=data.frame(GRIP=94,ARM=88)
 predict.lm(model.2,newData,interval="prediction")
 ```
 
-Fit is the predict SIMS score when you have an GRIP strength of 94. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when GRIP is 94.
+Fit is the predicted SIMS score when you have an GRIP strength of 94. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when GRIP is 94.
 
 Comparing the two models:
 model1(SIMS~ARM) shows a slightly lower Residual standard error of 1.226 where model2(SIMS~GRIP) is 1.295. model1(SIMS~ARM) shows a slightly higher Adjusted R-squared scored at 0.467 where model2(SIMS~GRIP) scored at 0.4053.
 
-model1(SIMS~ARM) appears to be slightly better model because it has a lower Residual standard error than model2(SIMS~GRIP) also it has a higher Adjusted R-Squared score then model2(SIMS~GRIP).
+Model1(SIMS~ARM) appears to be slightly better model because it has a lower Residual standard error than model2(SIMS~GRIP) also it has a higher Adjusted R-Squared score then model2(SIMS~GRIP).
 
 
 ## SIM~ARM+GRIP Regression
@@ -108,14 +108,26 @@ model.3 <- lm(SIMS~ARM + GRIP,data=data)
 summary.lm(model.3)
 ``` 
 
-model3 appears to be the better model because the adjusted R Squared was higher than model1 or model2, and also scored lower in the Residual standard error than model1 or model2.
+Model3 appears to be the better model because the adjusted R Squared was higher than model1 or model2, and also scored lower in the Residual standard error than model1 or model2.
 
+```{r}
+cor(SIMS~ARM + GRIP,data=data)
+```
+
+
+```{r}
+newData=data.frame(GRIP=94,ARM=88)
+predict.lm(model.3,newData,interval="prediction")
+```
+
+Fit is the predicted SIMS score when you have an GRIP strength of 94 and ARM strength of 88. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when GRIP is 94 and ARM is 88.
 
 ## Inferential Test
 
 This is the inferential test called anova to compare models.
 
 $H_0$: There is no difference in how well each model fits the data between models (model1,model3)
+
 $H_A$: There is a difference in how well each model fits the data between models (model1,model3).
 
 ```{r}
@@ -125,8 +137,3 @@ anova(model.1,model.3)
 The p-value is 0.000004994.
 
 We reject the Null hypothesis because the p value is so small. There is a difference between model1 and model3, we have statistical evidence that model 3 is better than model2.
-
-
-
-
-## Model Comparisons
