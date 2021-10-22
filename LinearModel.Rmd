@@ -63,6 +63,23 @@ Fit is the predict arm score when you have an ARM strength of 88. The lwr and th
 plot(SIMS~GRIP,data=data)
 ```
 
+This is a generic scatterplot of sims and grip. It shows the greater the grip force(GRIP), the greater the simulation(SIMS). It also shows a positive correlation.
+
+```{r}
+cor(SIMS~GRIP,data=data)
+```
+
+This number is the correlation between SIMS and GRIP force. The correlation is the measure of the linear association between two variables.
+
+```{r}
+model.2 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.2)
+```
+
+The equation is SIMS = -4.809675 + 0.045463 * GRIP
+
+
+
 ## SIM~ARM+GRIP Regression
 
 ## Model Comparisons
