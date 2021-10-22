@@ -55,7 +55,7 @@ newData=data.frame(GRIP=94,ARM=88)
 predict.lm(model.1,newData,interval="prediction")
 ```
 
-Fit is the predict arm score when you have an ARM strength of 88. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when ARM is 88.
+Fit is the predict SIMS score when you have an ARM strength of 88. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when ARM is 88.
 
 ## SIMS~GRIP Regression
 
@@ -78,6 +78,27 @@ summary.lm(model.2)
 
 The equation is SIMS = -4.809675 + 0.045463 * GRIP
 
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=GRIP))
+```
+
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+``` 
+
+This scatterplot shows that blue line which is the best linear fit to predict the average of SIMS response would be for any GRIP strength. The shaded part is the uncertainty of the line itself. It shows all of the data points of each individuals score and corresponding arm strength.
+
+```{r}
+newData=data.frame(GRIP=94,ARM=88)
+predict.lm(model.2,newData,interval="prediction")
+```
+
+Fit is the predict SIMS score when you have an GRIP strength of 94. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when GRIP is 94.
+
+Comparing the two models:
+model1(SIMS~ARM) shows a slightly lower Residual standard error of 1.226 where model2(SIMS~GRIP) is 1.295. model1(SIMS~ARM) shows a slightly higher Adjusted R-squared scored at 0.467 where model2(SIMS~GRIP) scored at 0.4053.
+
+model1(SIMS~ARM) appears to be slightly better model because it has a lower Residual standard error than model2(SIMS~GRIP) also it has a higher Adjusted R-Squared score then model2(SIMS~GRIP)
 
 
 ## SIM~ARM+GRIP Regression
