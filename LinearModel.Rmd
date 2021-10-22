@@ -22,7 +22,7 @@ Form three regression models; Model1 is SIMS~ARM, Model2 is SIMS~GRIP, and Model
 plot(SIMS~ARM,data=data)
 ```
 
-This scatterplot shows the greater the arm force(ARM), the greater the simulation(SIMS). It also shows a positive correlation.
+This is a generic scatterplot of sims and arm. It shows the greater the arm force(ARM), the greater the simulation(SIMS). It also shows a positive correlation.
 
 ```{r}
 cor(SIMS~ARM,data=data)
@@ -47,11 +47,15 @@ basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
 basicNN + geom_point() + geom_smooth(method=lm)
 ``` 
 
+This scatterplot shows that blue line which is the best linear fit to predict the average of SIMS response would be for any ARM strength. The shaded part is the uncertainty of the line itself. It shows all of the data points of each individuals score and corresponding arm strength. 
+
+
 ```{r}
 newData=data.frame(GRIP=94,ARM=88)
 predict.lm(model.1,newData,interval="prediction")
 ```
 
+Fit is the predict arm score when you have an ARM strength of 88. The lwr and the upr are the 95% confidence intervals for predicted SIMS score when ARM is 88.
 
 ## SIMS~GRIP Regression
 
